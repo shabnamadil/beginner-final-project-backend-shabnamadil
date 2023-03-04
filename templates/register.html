@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% block title %}
+    <title>EShopper - Register</title>
+    {% endblock %}
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Register</h1>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Input Credentials For Register</span></h2>
+        </div>
+        <div class="row justify-content-center px-xl-5">
+            <div class="col-lg-4 mb-5">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form name="sentMessage" novalidate="novalidate" method="post">
+                        {{ register.csrf_token }}
+                        <div class="control-group">
+                            {{register.full_name(class="form-control", placeholder="Full name", required="required")}}
+                            <!-- <input type="text" class="form-control" id="name" placeholder="Full name"
+                                required="required" data-validation-required-message="Please enter your full name" /> -->
+                                <p class="errorcolor"> 
+                                    {% for error in register.full_name.errors%}
+                                    * {{error}}
+                                    {% endfor %}
+                                    </p>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            
+                            {{register.email(class="form-control", placeholder="Email", required="required" )}}
+                            <!-- <input type="email" class="form-control" id="email" placeholder="Email"
+                                required="required" data-validation-required-message="Please enter your email" /> -->
+                                <p class="errorcolor"> 
+                                {% for error in register.email.errors%}
+                                * {{error}}
+                                {% endfor %}
+                                </p>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            {{register.password(class="form-control", placeholder="Password",  required="required")}}
+                            <!-- <input type="password" class="form-control" id="password" placeholder="Password"
+                                required="required" data-validation-required-message="Please enter your password" /> -->
+                                <p class="errorcolor"> 
+                                    {% for error in register.password.errors%}
+                                    * {{error}}
+                                    {% endfor %}
+                                    </p>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            {{register.confirm_password(class="form-control", placeholder="Confirm password" )}}
+                            <!-- <input type="password" class="form-control" id="password" placeholder="Confirm password"
+                                required="required" data-validation-required-message="Please enter your password" /> -->
+                                <p class="errorcolor"> 
+                                    {% for error in register.confirm_password.errors%}
+                                    * {{error}}
+                                    {% endfor %}
+                                    </p>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+{% endblock %}
